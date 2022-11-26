@@ -1,7 +1,7 @@
-package com.note.note.click
+package com.note.note.ui.click
 
 import androidx.cardview.widget.CardView
-import com.note.note.models.Note
+import com.note.note.data.models.Note
 
 interface NoteItemClickListner {
 

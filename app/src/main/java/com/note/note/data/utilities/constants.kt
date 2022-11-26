@@ -1,3 +1,3 @@
-package com.note.note.utilities
+package com.note.note.data.utilities
 
 const val DATABASE_NAME = "note_database"

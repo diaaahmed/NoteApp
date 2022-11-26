@@ -1,4 +1,4 @@
- package com.note.note
+ package com.note.note.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -12,12 +12,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.note.note.adapter.NoteAdapter
-import com.note.note.click.NoteItemClickListner
-import com.note.note.database.NoteDatabase
+import com.note.note.R
+import com.note.note.ui.adapter.NoteAdapter
+import com.note.note.ui.click.NoteItemClickListner
+import com.note.note.data.database.NoteDatabase
 import com.note.note.databinding.ActivityMainBinding
-import com.note.note.models.Note
-import com.note.note.models.NoteViewModel
+import com.note.note.data.models.Note
+import com.note.note.ui.viewmodel.NoteViewModel
 
  class MainActivity : AppCompatActivity(), NoteItemClickListner,PopupMenu.OnMenuItemClickListener
  {
@@ -31,8 +32,8 @@ import com.note.note.models.NoteViewModel
 
      lateinit var database: NoteDatabase
 
-     lateinit var selectedNote:Note
-     lateinit var viewModel:NoteViewModel
+     lateinit var selectedNote: Note
+     lateinit var viewModel: NoteViewModel
 
      private val updateNote = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
          result->
@@ -55,7 +56,7 @@ import com.note.note.models.NoteViewModel
         initUi()
 
         viewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[NoteViewModel::class.java]
 
         viewModel.allNotes.observe(this) { list ->
 
@@ -89,7 +90,7 @@ import com.note.note.models.NoteViewModel
          }
 
          ui.fbAddNote.setOnClickListener {
-             val intent = Intent(this,AddNote::class.java)
+             val intent = Intent(this, AddNote::class.java)
              getContent.launch(intent)
          }
 
@@ -114,7 +115,7 @@ import com.note.note.models.NoteViewModel
 
      override fun onItemClick(note: Note)
      {
-         val intent = Intent(this@MainActivity,AddNote::class.java)
+         val intent = Intent(this@MainActivity, AddNote::class.java)
          intent.putExtra("current_note",note)
          updateNote.launch(intent)
      }

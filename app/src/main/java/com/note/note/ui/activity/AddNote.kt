@@ -1,10 +1,11 @@
-package com.note.note
+package com.note.note.ui.activity
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.note.note.data.models.Note
 import com.note.note.databinding.ActivityAddNoteBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,8 +16,8 @@ class AddNote : AppCompatActivity() {
         ActivityAddNoteBinding.inflate(layoutInflater)
     }
 
-    private lateinit var note:com.note.note.models.Note
-    private lateinit var oldNote:com.note.note.models.Note
+    private lateinit var note: Note
+    private lateinit var oldNote: Note
 
     var isUpdated = false
 
@@ -26,7 +27,7 @@ class AddNote : AppCompatActivity() {
         setContentView(ui.root)
 
         try {
-            oldNote = intent.getSerializableExtra("current_note") as com.note.note.models.Note
+            oldNote = intent.getSerializableExtra("current_note") as Note
             ui.edTitle.setText(oldNote.title)
             ui.edNote.setText(oldNote.note)
             isUpdated = true
@@ -47,11 +48,11 @@ class AddNote : AppCompatActivity() {
 
                 if(isUpdated)
                 {
-                    note = com.note.note.models.Note(oldNote.id, title, noteDes, formatter.format(Date()))
+                    note = Note(oldNote.id, title, noteDes, formatter.format(Date()))
                 }
                 else
                 {
-                    note = com.note.note.models.Note(null,title,noteDes,formatter.format(Date()))
+                    note = Note(null,title,noteDes,formatter.format(Date()))
                 }
 
                 val intent = Intent()

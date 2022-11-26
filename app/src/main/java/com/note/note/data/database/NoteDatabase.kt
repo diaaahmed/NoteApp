@@ -1,23 +1,23 @@
-package com.note.note.database
+package com.note.note.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.note.note.models.Note
-import com.note.note.utilities.DATABASE_NAME
+import com.note.note.data.models.Note
+import com.note.note.data.utilities.DATABASE_NAME
 
 @Database(entities = [Note::class], version = 1)
 abstract class NoteDatabase:RoomDatabase() {
 
-    abstract fun getNoteDao():NoteDao
+    abstract fun getNoteDao(): NoteDao
 
     companion object{
         @Volatile
-        private var INSTANCE:NoteDatabase?= null
+        private var INSTANCE: NoteDatabase?= null
 
-        fun getDatabase(context:Context):NoteDatabase{
-            return INSTANCE?: synchronized(this)
+        fun getDatabase(context:Context): NoteDatabase {
+            return INSTANCE ?: synchronized(this)
             {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,

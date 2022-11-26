@@ -1,17 +1,18 @@
-package com.note.note.models
+package com.note.note.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.note.note.database.NoteDatabase
-import com.note.note.database.NoteRepository
+import com.note.note.data.models.Note
+import com.note.note.data.database.NoteDatabase
+import com.note.note.data.database.NoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NoteViewModel(application: Application):AndroidViewModel(application)
 {
-    private val repository:NoteRepository
+    private val repository: NoteRepository
 
     val allNotes:LiveData<List<Note>>
 

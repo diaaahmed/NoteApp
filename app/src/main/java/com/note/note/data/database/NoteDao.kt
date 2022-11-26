@@ -1,4 +1,4 @@
-package com.note.note.database
+package com.note.note.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,16 +6,16 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.note.note.models.Note
+import com.note.note.data.models.Note
 
 @Dao
 interface NoteDao
 {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(note:Note)
+    suspend fun insert(note: Note)
 
     @Delete
-    suspend fun delete(note:Note)
+    suspend fun delete(note: Note)
 
     @Query("SELECT * from notes_table order by id ASC")
     fun getAllNotes():LiveData<List<Note>>

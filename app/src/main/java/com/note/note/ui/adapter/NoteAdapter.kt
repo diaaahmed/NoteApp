@@ -1,4 +1,4 @@
-package com.note.note.adapter
+package com.note.note.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,19 +6,19 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.note.note.R
-import com.note.note.click.NoteItemClickListner
+import com.note.note.ui.click.NoteItemClickListner
 import com.note.note.databinding.ListItemBinding
-import com.note.note.models.Note
+import com.note.note.data.models.Note
 import kotlin.random.Random
 
-class NoteAdapter(private val context:Context, val click:NoteItemClickListner):RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(private val context:Context, val click: NoteItemClickListner):RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private val noteList = ArrayList<Note>()
     private val fullList = ArrayList<Note>()
 
     inner class NoteViewHolder(private val item:ListItemBinding):RecyclerView.ViewHolder(item.root)
     {
-        fun bind(note:Note) = with(item)
+        fun bind(note: Note) = with(item)
         {
             txTitle.text = note.title
             txTitle.isSelected = true
